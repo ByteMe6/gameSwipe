@@ -1,0 +1,23 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace GameSwipe.Application.Dtos.Contact;
+
+public class ContactWriteDto
+{
+	public long? Id { get; set; }
+
+	[Length(1, 50)]
+	public string Identificator { get; set; }
+	public string? Name { get; set; }
+
+	[Required]
+	public long ContactId { get; set; }
+
+	public ContactWriteDto(string identificator, long contactId, string? name = null, long? id = null)
+	{
+		Id = id;
+		Identificator = identificator;
+		Name = name;
+		ContactId = contactId;
+	}
+}

@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36310.24 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameSwipe.Api", "GameSwipe.Api\GameSwipe.Api.csproj", "{AE730333-C537-4E94-8154-B4B1AFFA8DDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameSwipe.Application", "GameSwipe.Application\GameSwipe.Application.csproj", "{30C990B0-B24E-49B9-A86C-F0D72D565680}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameSwipe.DataAccess", "GameSwipe.DataAccess\GameSwipe.DataAccess.csproj", "{F4BDEEA2-D2AD-4E70-A37A-51632E40B589}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE730333-C537-4E94-8154-B4B1AFFA8DDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE730333-C537-4E94-8154-B4B1AFFA8DDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE730333-C537-4E94-8154-B4B1AFFA8DDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE730333-C537-4E94-8154-B4B1AFFA8DDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30C990B0-B24E-49B9-A86C-F0D72D565680}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30C990B0-B24E-49B9-A86C-F0D72D565680}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30C990B0-B24E-49B9-A86C-F0D72D565680}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30C990B0-B24E-49B9-A86C-F0D72D565680}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4BDEEA2-D2AD-4E70-A37A-51632E40B589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4BDEEA2-D2AD-4E70-A37A-51632E40B589}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4BDEEA2-D2AD-4E70-A37A-51632E40B589}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4BDEEA2-D2AD-4E70-A37A-51632E40B589}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D83578B-50B2-4B96-BCFA-C49124A88D49}
+	EndGlobalSection
+EndGlobal

@@ -2,7 +2,7 @@
 
 namespace GameSwipe.Application.Dtos.Platform;
 
-public class PlatfromWriteDto
+public class PlatformWriteDto
 {
 	public long? Id { get; set; }
 
@@ -12,7 +12,7 @@ public class PlatfromWriteDto
 	[Length(5, 150)]
 	public string Description { get; set; }
 
-	public PlatfromWriteDto(string name, string description, long? id = null)
+	public PlatformWriteDto(string name, string description, long? id = null)
 	{
 		Id = id;
 		Name = name;

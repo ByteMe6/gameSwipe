@@ -10,8 +10,4 @@
     <ProjectReference Include="..\GameSwipe.DataAccess\GameSwipe.DataAccess.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\Services\Users\" />
-  </ItemGroup>
-
 </Project>

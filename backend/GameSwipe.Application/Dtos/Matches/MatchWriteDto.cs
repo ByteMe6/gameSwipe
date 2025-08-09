@@ -2,7 +2,7 @@
 
 using GameSwipe.DataAccess.Entities.Users;
 
-namespace GameSwipe.Application.Dtos.Match;
+namespace GameSwipe.Application.Dtos.Matches;
 
 public class MatchWriteDto
 {

@@ -1,4 +1,4 @@
-﻿namespace GameSwipe.Application.Dtos.User;
+﻿namespace GameSwipe.Application.Dtos.Users;
 
 public class UserGetShortDto
 {

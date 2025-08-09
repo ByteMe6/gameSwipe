@@ -1,6 +1,6 @@
-﻿using GameSwipe.Application.Dtos.Genre;
+﻿using GameSwipe.Application.Dtos.Genres;
 
-namespace GameSwipe.Application.Dtos.Game;
+namespace GameSwipe.Application.Dtos.Games;
 
 public class GameGetFullDto
 {

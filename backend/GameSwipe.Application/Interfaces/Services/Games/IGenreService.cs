@@ -1,4 +1,4 @@
-﻿using GameSwipe.Application.Dtos.Genre;
+﻿using GameSwipe.Application.Dtos.Genres;
 using GameSwipe.DataAccess.Entities.Games;
 
 namespace GameSwipe.Application.Interfaces.Services.Games;

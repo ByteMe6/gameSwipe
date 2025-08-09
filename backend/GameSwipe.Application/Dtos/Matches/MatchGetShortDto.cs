@@ -1,6 +1,6 @@
-﻿using GameSwipe.Application.Dtos.User;
+﻿using GameSwipe.Application.Dtos.Users;
 
-namespace GameSwipe.Application.Dtos.Match;
+namespace GameSwipe.Application.Dtos.Matches;
 
 public class MatchGetShortDto
 {

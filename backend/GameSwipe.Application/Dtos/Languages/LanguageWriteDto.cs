@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GameSwipe.Application.Dtos.Language;
+namespace GameSwipe.Application.Dtos.Languages;
 
 public class LanguageWriteDto
 {

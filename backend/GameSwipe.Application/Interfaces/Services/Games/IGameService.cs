@@ -1,4 +1,4 @@
-﻿using GameSwipe.Application.Dtos.Game;
+﻿using GameSwipe.Application.Dtos.Games;
 
 namespace GameSwipe.Application.Interfaces.Services.Games;
 

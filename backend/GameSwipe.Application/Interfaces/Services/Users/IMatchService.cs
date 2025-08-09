@@ -1,4 +1,4 @@
-﻿using GameSwipe.Application.Dtos.Match;
+﻿using GameSwipe.Application.Dtos.Matches;
 
 namespace GameSwipe.Application.Interfaces.Services.Users;
 

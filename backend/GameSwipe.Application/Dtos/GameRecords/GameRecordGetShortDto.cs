@@ -1,6 +1,6 @@
-﻿using GameSwipe.Application.Dtos.Game;
+﻿using GameSwipe.Application.Dtos.Games;
 
-namespace GameSwipe.Application.Dtos.GameRecord;
+namespace GameSwipe.Application.Dtos.GameRecords;
 
 public class GameRecordGetShortDto
 {

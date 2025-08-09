@@ -1,6 +1,6 @@
 ﻿using GameSwipe.DataAccess.Entities.Other;
 
-namespace GameSwipe.Application.Dtos.Schedule;
+namespace GameSwipe.Application.Dtos.Schedules;
 
 public class ScheduleWriteDto
 {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GameSwipe.Application.Dtos.GameRecord;
+namespace GameSwipe.Application.Dtos.GameRecords;
 
 public class GameRecordWriteDto
 {

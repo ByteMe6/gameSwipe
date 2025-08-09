@@ -1,6 +1,6 @@
-﻿using GameSwipe.Application.Dtos.Platform;
+﻿using GameSwipe.Application.Dtos.Platforms;
 
-namespace GameSwipe.Application.Dtos.Contact;
+namespace GameSwipe.Application.Dtos.Contacts;
 
 public class ContactGetShortDto
 {

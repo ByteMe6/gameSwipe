@@ -1,4 +1,4 @@
-﻿using GameSwipe.Application.Dtos.Language;
+﻿using GameSwipe.Application.Dtos.Languages;
 using GameSwipe.DataAccess.Entities.Other;
 
 namespace GameSwipe.Application.Interfaces.Services.Others;

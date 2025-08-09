@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GameSwipe.Application.Dtos.Contact;
+namespace GameSwipe.Application.Dtos.Contacts;
 
 public class ContactWriteDto
 {

@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-using GameSwipe.Application.Dtos.Contact;
-using GameSwipe.Application.Dtos.GameRecord;
-using GameSwipe.Application.Dtos.Schedule;
+using GameSwipe.Application.Dtos.Contacts;
+using GameSwipe.Application.Dtos.GameRecords;
+using GameSwipe.Application.Dtos.Schedules;
 
-namespace GameSwipe.Application.Dtos.User;
+namespace GameSwipe.Application.Dtos.Users;
 
 public class UserWriteDto
 {

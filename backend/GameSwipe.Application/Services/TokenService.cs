@@ -29,7 +29,7 @@ public class TokenService : ITokenService
 			new Claim(ClaimTypes.Name, user.Username),
 			new Claim(ClaimTypes.Email, user.Email),
 			new Claim(ClaimTypes.Role, role.ToString()),
-			new Claim(JwtRegisteredClaimNames.Iat, new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds().ToString())
+			new Claim(JwtRegisteredClaimNames.Iat, new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds().ToString())
 		];
 		SymmetricSecurityKey key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_config["Key"] ?? throw new Exception("JWT Key not found")));
 		SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

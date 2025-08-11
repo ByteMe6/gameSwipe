@@ -13,7 +13,7 @@ public class User : AuditableEntity
 
 	public string PasswordHash { get; set; } = null!;
 
-	public bool EmailVerified { get; set; }
+	public bool Admin { get; set; }
 
 	public DateTime BirthDate { get; set; }
 

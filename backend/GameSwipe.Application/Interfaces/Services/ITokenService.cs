@@ -6,5 +6,5 @@ public interface ITokenService
 {
 	public string GenerateToken(User user);
 
-	public string RefreshToken(string token);
+	public DateTime GetIssueDate(string token);
 }

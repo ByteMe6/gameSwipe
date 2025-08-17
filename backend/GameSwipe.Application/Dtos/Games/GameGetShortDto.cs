@@ -2,6 +2,6 @@
 
 namespace GameSwipe.Application.Dtos.Games;
 
-public class GameGetShortDto : GetShortDto
+public class GameGetShortDto(long id, string name) : GetShortDto(id, name)
 {
 }

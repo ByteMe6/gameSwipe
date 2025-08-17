@@ -2,6 +2,6 @@
 
 namespace GameSwipe.Application.Dtos.Genres;
 
-public class GenreGetShortDto : GetShortDto
+public class GenreGetShortDto(long id, string name) : GetShortDto(id, name)
 {
 }

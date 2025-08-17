@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GameSwipe.DataAccess.Migrations
 {
-    [DbContext(typeof(UserDbContext))]
+    [DbContext(typeof(GameSwipeDbContext))]
     [Migration("20250811055635_Admin")]
     partial class Admin
     {

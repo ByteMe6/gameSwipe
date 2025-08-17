@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder();
 
 // Add services to the container.
 
-builder.Services.AddDbContext<UserDbContext>(options => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=GameSwipeDb;Integrated Security=true;"));
+builder.Services.AddDbContext<GameSwipeDbContext>(options => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=GameSwipeDb;Integrated Security=true;"));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

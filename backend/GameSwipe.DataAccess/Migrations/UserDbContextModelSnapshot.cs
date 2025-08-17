@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GameSwipe.DataAccess.Migrations
 {
-    [DbContext(typeof(UserDbContext))]
+    [DbContext(typeof(GameSwipeDbContext))]
     partial class UserDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -1,12 +1,17 @@
-﻿using GameSwipe.Application.Dtos.Platforms;
+﻿using GameSwipe.Application.Dtos.General;
+using GameSwipe.Application.Dtos.Platforms;
 
 namespace GameSwipe.Application.Dtos.Contacts;
 
-public class ContactGetShortDto
+public class ContactGetShortDto : GetShortDto
 {
-	public long Id { get; set; }
 	public string Identificator { get; set; } = string.Empty;
-	public string? Name { get; set; }
 
-	public PlatformGetShortDto Platform { get; set; } = new();
+	public PlatformGetShortDto Platform { get; set; } = null!;
+
+	public ContactGetShortDto(long id, string name, string identificator, PlatformGetShortDto platform) : base(id, name)
+	{
+		Identificator = identificator;
+		Platform = platform;
+	}
 }

@@ -1,9 +1,15 @@
-﻿namespace GameSwipe.Application.Dtos.Users;
+﻿using GameSwipe.Application.Dtos.General;
 
-public class UserGetShortDto
+namespace GameSwipe.Application.Dtos.Users;
+
+public class UserGetShortDto : GetShortDto
 {
-	public long Id { get; set; }
 	public string Username { get; set; } = string.Empty;
-	public string Name { get; set; } = string.Empty;
 	public string? Avatar { get; set; } = null;
+
+	public UserGetShortDto(long id, string username, string name, string? avatar) : base(id, name)
+	{
+		Username = username;
+		Avatar = avatar;
+	}
 }

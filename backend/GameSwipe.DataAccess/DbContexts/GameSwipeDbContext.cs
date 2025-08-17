@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GameSwipe.DataAccess.DbContexts;
 
-public class UserDbContext : DbContext
+public class GameSwipeDbContext : DbContext
 {
 	public virtual DbSet<Game> Games { get; set; } = null!;
 	public virtual DbSet<GameRecord> GameRecords { get; set; } = null!;
@@ -20,7 +20,7 @@ public class UserDbContext : DbContext
 	public virtual DbSet<User> Users { get; set; } = null!;
 	public virtual DbSet<Match> Matches { get; set; } = null!;
 
-	public UserDbContext(DbContextOptions<UserDbContext> options) : base(options)
+	public GameSwipeDbContext(DbContextOptions<GameSwipeDbContext> options) : base(options)
 	{
 	}
 

@@ -7,7 +7,7 @@ public class GameRecordGetShortDto
 	public long Id { get; set; }
 	public long PlayerId { get; set; }
 
-	public GameGetShortDto Game { get; set; } = new();
+	public GameGetShortDto Game { get; set; } = null!;
 
 	public int Playtime { get; set; }
 	public string Progress { get; set; } = string.Empty;

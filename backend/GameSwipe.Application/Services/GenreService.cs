@@ -11,8 +11,8 @@ namespace GameSwipe.Application.Services;
 
 public class GenreService : IGenreService
 {
-	private readonly UserDbContext _db;
-	public GenreService(UserDbContext db)
+	private readonly GameSwipeDbContext _db;
+	public GenreService(GameSwipeDbContext db)
 	{
 		_db = db;
 	}

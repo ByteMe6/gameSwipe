@@ -14,4 +14,6 @@ public interface ILanguageService
 	public Task<bool> UpdateLanguageAsync(LanguageWriteDto dto);
 
 	public Task<bool> DeleteLanguageAsync(long id);
+
+	public Task<List<LanguageGetShortDto>> GetLanguagesShortAsync();
 }

@@ -2,6 +2,6 @@
 
 namespace GameSwipe.Application.Dtos.Languages;
 
-public class LanguageGetShortDto : GetShortDto
+public class LanguageGetShortDto(long id, string name) : GetShortDto(id, name)
 {
 }

@@ -11,9 +11,9 @@ namespace GameSwipe.Application.Services;
 
 public class GameService : IGameService
 {
-	private readonly UserDbContext _db;
+	private readonly GameSwipeDbContext _db;
 
-	public GameService(UserDbContext db)
+	public GameService(GameSwipeDbContext db)
 	{
 		_db = db;
 	}

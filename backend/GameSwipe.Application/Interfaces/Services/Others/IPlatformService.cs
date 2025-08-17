@@ -5,6 +5,8 @@ namespace GameSwipe.Application.Interfaces.Services.Others;
 
 public interface IPlatformService
 {
+	public Task<List<PlatformGetShortDto>> GetPlatformsShortAsync();
+
 	public Task<PlatformGetShortDto> GetPlatformShortAsync(long id);
 
 	public Task<Platform> GetPlatformBareAsync(long id);

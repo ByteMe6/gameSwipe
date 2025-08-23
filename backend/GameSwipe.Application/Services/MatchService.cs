@@ -153,14 +153,22 @@ public class MatchService : IMatchService
 	}
 
 
-	public async Task<List<MatchGetShortDto>> GetMatchesReceivedAsync(int page = 1, int pageSize = 50)//todo userId
+	public async Task<List<MatchGetShortDto>> GetMatchesReceivedAsync(long? userId, int page = 1, int pageSize = 50)
 	{
+		if(userId is null)
+			userId = _id.Id;
+
+		if(userId != _id.Id && !_id.IsAdmin)
+			throw new Exception("Access denied");
+
+		int skip = (page - 1) * pageSize;
+
 		return await _db.Matches.Where(x => x.TargetUserId == _id.Id && x.Status == MatchStatus.Accept).Select(
 			m => new MatchGetShortDto(
 				m.Id,
 				new UserGetShortDto(m.User.Id, m.User.Username, m.User.Name, m.User.Avatar),
 				new UserGetShortDto(m.TargetUser.Id, m.TargetUser.Username, m.TargetUser.Name, m.TargetUser.Avatar)
-			)).ToListAsync();
+			)).Skip(skip).Take(pageSize).ToListAsync();
 	}
 
 	public async Task<bool> UpdateMatchAsync(MatchWriteDto dto)

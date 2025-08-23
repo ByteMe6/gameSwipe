@@ -66,7 +66,7 @@ public class MatchService : IMatchService
 
 		int skip = (page - 1) * pageSize;
 
-		return await _db.Matches
+		return await _db.Matches.Include(x => x.TargetUser).Include(x => x.User)
 			.Where(x => x.UserId == userId)
 			.Where(x => x.Status == MatchStatus.Accept)
 			.OrderBy(x => x.Id)
@@ -88,7 +88,7 @@ public class MatchService : IMatchService
 
 		int skip = (page - 1) * pageSize;
 
-		return await _db.Matches
+		return await _db.Matches.Include(x => x.TargetUser).Include(x => x.User)
 			.Where(x => x.UserId == userId || x.TargetUserId == userId)
 			.OrderBy(x => x.Id)
 			.Skip(skip).Take(pageSize)
@@ -109,7 +109,7 @@ public class MatchService : IMatchService
 
 		int skip = (page - 1) * pageSize;
 
-		return await _db.Matches
+		return await _db.Matches.Include(x => x.TargetUser).Include(x => x.User)
 			.Where(x => x.UserId == userId)
 			.Where(x => x.Status == MatchStatus.Decline)
 			.OrderBy(x => x.Id)
@@ -131,7 +131,7 @@ public class MatchService : IMatchService
 
 		int skip = (page - 1) * pageSize;
 
-		return await _db.Matches
+		return await _db.Matches.Include(x => x.TargetUser).Include(x => x.User)
 			.Join(
 				_db.Matches,
 				m1 => new { UserId = m1.UserId, TargetUserId = m1.TargetUserId },
@@ -163,7 +163,7 @@ public class MatchService : IMatchService
 
 		int skip = (page - 1) * pageSize;
 
-		return await _db.Matches.Where(x => x.TargetUserId == _id.Id && x.Status == MatchStatus.Accept).Select(
+		return await _db.Matches.Include(x => x.TargetUser).Include(x => x.User).Where(x => x.TargetUserId == _id.Id && x.Status == MatchStatus.Accept).Select(
 			m => new MatchGetShortDto(
 				m.Id,
 				new UserGetShortDto(m.User.Id, m.User.Username, m.User.Name, m.User.Avatar),

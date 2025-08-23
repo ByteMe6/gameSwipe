@@ -8,8 +8,7 @@ public class MatchWriteDto
 {
 	public long? Id { get; set; }
 
-	[Required]
-	public long TargetUserId { get; set; }
+	public long? TargetUserId { get; set; }
 	[Required]
 	public MatchStatus Status { get; set; }
 

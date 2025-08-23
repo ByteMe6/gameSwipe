@@ -24,6 +24,8 @@ public class MatchService : IMatchService
 
 	public async Task<bool> CreateMatchAsync(MatchWriteDto dto)
 	{
+		if(dto.TargetUserId is null)
+			throw new Exception("Target user id is null");
 		User? target = await _db.Users.FindAsync(dto.TargetUserId);
 		if(target is null)
 			throw new Exception("Target not found");
@@ -32,7 +34,7 @@ public class MatchService : IMatchService
 		{
 			Status = dto.Status,
 			Created = DateTime.UtcNow,
-			TargetUserId = dto.TargetUserId,
+			TargetUserId = dto.TargetUserId ?? throw new Exception("Something miraculous happened"),
 			Updated = DateTime.UtcNow,
 			UserId = _id.Id
 		};
@@ -129,41 +131,46 @@ public class MatchService : IMatchService
 
 		int skip = (page - 1) * pageSize;
 
-
-
-
-
-		var mutualIds = from m1 in _db.Matches
-						join m2 in _db.Matches on new
-						{
-							UserId = m1.UserId,
-							TargetUserId = m1.TargetUserId
-						} equals new
-						{
-							UserId = m2.TargetUserId,
-							TargetUserId = m2.UserId
-						}
-						where m1.UserId == userId && m1.Status == MatchStatus.Accept && m2.Status == MatchStatus.Accept
-						select m1.Id;
-
-		List<long> ids = await mutualIds.Skip(skip).Take(pageSize).ToListAsync();
-
 		return await _db.Matches
-			.Where(x => ids.Contains(x.Id))
-			.Select(x => new MatchGetShortDto(
-			x.Id,
-			new UserGetShortDto(x.User.Id, x.User.Username, x.User.Name, x.User.Avatar),
-			new UserGetShortDto(x.TargetUser.Id, x.TargetUser.Username, x.TargetUser.Name, x.TargetUser.Avatar)
+			.Join(
+				_db.Matches,
+				m1 => new { UserId = m1.UserId, TargetUserId = m1.TargetUserId },
+				m2 => new { UserId = m2.TargetUserId, TargetUserId = m2.UserId },
+				(m1, m2) => new { m1, m2 }
+			)
+			.Where(x => x.m1.UserId == userId &&
+						x.m1.Status == MatchStatus.Accept &&
+						x.m2.Status == MatchStatus.Accept)
+			.Select(x => x.m1)
+			.Skip(skip)
+			.Take(pageSize)
+			.Select(m => new MatchGetShortDto(
+				m.Id,
+				new UserGetShortDto(m.User.Id, m.User.Username, m.User.Name, m.User.Avatar),
+				new UserGetShortDto(m.TargetUser.Id, m.TargetUser.Username, m.TargetUser.Name, m.TargetUser.Avatar)
+			))
+			.ToListAsync();
+	}
+
+
+	public async Task<List<MatchGetShortDto>> GetMatchesReceivedAsync(int page = 1, int pageSize = 50)//todo userId
+	{
+		return await _db.Matches.Where(x => x.TargetUserId == _id.Id && x.Status == MatchStatus.Accept).Select(
+			m => new MatchGetShortDto(
+				m.Id,
+				new UserGetShortDto(m.User.Id, m.User.Username, m.User.Name, m.User.Avatar),
+				new UserGetShortDto(m.TargetUser.Id, m.TargetUser.Username, m.TargetUser.Name, m.TargetUser.Avatar)
 			)).ToListAsync();
 	}
 
-	public Task<List<MatchGetShortDto>> GetMatchesReceivedAsync(int page = 1, int pageSize = 50)
+	public async Task<bool> UpdateMatchAsync(MatchWriteDto dto)
 	{
-		throw new NotImplementedException();
-	}
+		Match? entity = await _db.Matches.FindAsync(dto.Id);
+		if(entity == null)
+			throw new Exception("Match not found");
 
-	public Task<bool> UpdateMatchAsync(MatchWriteDto dto)
-	{
-		throw new NotImplementedException();
+		entity.Status = dto.Status;
+		entity.Updated = DateTime.UtcNow;
+		return await _db.SaveChangesAsync() > 0;
 	}
 }

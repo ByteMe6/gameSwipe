@@ -11,13 +11,14 @@ public class ContactWriteDto
 	public string? Name { get; set; }
 
 	[Required]
-	public long ContactId { get; set; }
+	public long PlatformId { get; set; }
 
-	public ContactWriteDto(string identificator, long contactId, string? name = null, long? id = null)
+	public ContactWriteDto(string identificator, long platformId
+		, string? name = null, long? id = null)
 	{
 		Id = id;
 		Identificator = identificator;
 		Name = name;
-		ContactId = contactId;
+		PlatformId = platformId;
 	}
 }

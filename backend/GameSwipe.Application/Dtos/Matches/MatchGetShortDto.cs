@@ -1,4 +1,5 @@
 ﻿using GameSwipe.Application.Dtos.Users;
+using GameSwipe.DataAccess.Entities.Users;
 
 namespace GameSwipe.Application.Dtos.Matches;
 
@@ -13,5 +14,10 @@ public class MatchGetShortDto
 		Id = id;
 		User = user;
 		TargetUser = targetUser;
+	}
+
+	public static explicit operator MatchGetShortDto(Match match)
+	{
+		return new(match.Id, (UserGetShortDto)match.User, (UserGetShortDto)match.TargetUser);
 	}
 }

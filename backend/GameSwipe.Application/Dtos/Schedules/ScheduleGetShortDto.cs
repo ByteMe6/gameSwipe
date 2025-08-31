@@ -9,4 +9,12 @@ public class ScheduleGetShortDto
 
 	public TimeOnly StartTime { get; set; }
 	public TimeOnly EndTime { get; set; }
+
+	public static explicit operator ScheduleGetShortDto(Schedule schedule) => new()
+	{
+		Day = schedule.Day,
+		EndTime = schedule.EndTime,
+		Id = schedule.Id,
+		StartTime = schedule.StartTime,
+	};
 }

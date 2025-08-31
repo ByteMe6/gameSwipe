@@ -8,7 +8,7 @@ public interface IUserService
 
 	public Task<bool> UpdateUserAsync(UserWriteDto dto);
 
-	public Task<bool> DeleteUserAsync();
+	public Task<bool> DeleteUserAsync(long? id);
 
 	public Task<bool> VerifyEmailAsync(string email, string code);
 
@@ -20,7 +20,7 @@ public interface IUserService
 
 	//----
 
-	public Task<UserGetFullDto> GetUserFullAsync(long id);
+	public Task<UserGetFullDto> GetUserFullAsync(long? id);
 
 	public Task<List<UserGetShortDto>> GetUsersByIdsAsync(List<long> ids);
 

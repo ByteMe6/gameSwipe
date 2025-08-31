@@ -18,8 +18,7 @@ public class UserWriteDto
 	[Length(2, 70)]
 	public string Name { get; set; }
 
-	[Length(8, 32)]
-	public string Password { get; set; }
+	public string? Password { get; set; }
 
 	[Required]
 	public DateTime BirthDate { get; set; }
@@ -53,7 +52,7 @@ public class UserWriteDto
 	[Required]
 	public List<ContactWriteDto> Contacts { get; set; }
 
-	public UserWriteDto(long? id, string username, string email, string name, string password, DateTime birthDate, string? avatar, string description, string location, List<long> languageIds, List<long> genreIds, string rolePreferred, List<ScheduleWriteDto> availableSchedules, List<GameRecordWriteDto> gameRecords, string preferences, List<ContactWriteDto> contacts)
+	public UserWriteDto(long? id, string username, string email, string name, string? password, DateTime birthDate, string? avatar, string description, string location, List<long> languageIds, List<long> genreIds, string rolePreferred, List<ScheduleWriteDto> availableSchedules, List<GameRecordWriteDto> gameRecords, string preferences, List<ContactWriteDto> contacts)
 	{
 		Id = id;
 		Username = username;

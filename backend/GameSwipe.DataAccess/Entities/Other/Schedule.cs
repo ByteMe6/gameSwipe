@@ -1,7 +1,11 @@
-﻿namespace GameSwipe.DataAccess.Entities.Other;
+﻿using GameSwipe.DataAccess.Entities.Users;
+
+namespace GameSwipe.DataAccess.Entities.Other;
 
 public class Schedule : AuditableEntity
 {
+	public User User { get; set; } = null!;
+
 	public WeekDays Day { get; set; }
 	public TimeOnly StartTime { get; set; }
 	public TimeOnly EndTime { get; set; }

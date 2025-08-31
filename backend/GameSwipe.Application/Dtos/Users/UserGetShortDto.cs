@@ -1,4 +1,5 @@
 ﻿using GameSwipe.Application.Dtos.General;
+using GameSwipe.DataAccess.Entities.Users;
 
 namespace GameSwipe.Application.Dtos.Users;
 
@@ -12,4 +13,6 @@ public class UserGetShortDto : GetShortDto
 		Username = username;
 		Avatar = avatar;
 	}
+
+	public static explicit operator UserGetShortDto(User user) => new(user.Id, user.Username, user.Name, user.Avatar);
 }

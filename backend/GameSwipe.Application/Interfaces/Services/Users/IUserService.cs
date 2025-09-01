@@ -8,6 +8,8 @@ public interface IUserService
 
 	public Task<bool> UpdateUserAsync(UserWriteDto dto);
 
+	public Task<UserWriteDto> GetTemplateAsync();
+
 	public Task<bool> DeleteUserAsync(long? id);
 
 	public Task<bool> VerifyEmailAsync(string email, string code);
@@ -17,6 +19,8 @@ public interface IUserService
 	public Task<bool> ResetPasswordAsync(string email);
 
 	public Task<string> LoginAsync(UserLoginDto dto);
+
+	public Task<string> ReloginAsync(string token);
 
 	//----
 

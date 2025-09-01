@@ -1,5 +1,6 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
 
 using GameSwipe.Application.Interfaces.Services;
 using GameSwipe.DataAccess.Entities.Users;
@@ -40,11 +41,45 @@ public class TokenService : ITokenService
 		return new JwtSecurityTokenHandler().WriteToken(token);
 	}
 
+	public long GetId(string token)
+	{
+		JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+		JwtSecurityToken jwt = handler.ReadJwtToken(token);
+		return long.Parse(jwt.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value);
+	}
+
 	public DateTime GetIssueDate(string token)
 	{
 		JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
 		JwtSecurityToken jwt = handler.ReadJwtToken(token);
 		return jwt.IssuedAt;
+	}
+
+	public bool IsValid(string token, bool checkLifetime = false)
+	{
+		var handler = new JwtSecurityTokenHandler();
+		var key = Encoding.ASCII.GetBytes(_config["Key"] ?? throw new Exception("JWT Key not found"));
+
+		try
+		{
+			var validationParameters = new TokenValidationParameters
+			{
+				ValidateIssuerSigningKey = true,
+				IssuerSigningKey = new SymmetricSecurityKey(key),
+				ValidateIssuer = false,
+				ValidateAudience = false,
+			};
+			if(checkLifetime)
+				validationParameters.ValidateLifetime = true;
+			else
+				validationParameters.ValidateLifetime = false;
+			handler.ValidateToken(token, validationParameters, out _);
+			return true;
+		}
+		catch
+		{
+			return false;
+		}
 	}
 }
 

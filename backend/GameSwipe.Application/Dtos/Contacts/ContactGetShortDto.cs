@@ -16,5 +16,5 @@ public class ContactGetShortDto : GetShortDto
 		Platform = platform;
 	}
 
-	public static explicit operator ContactGetShortDto(Contact contact) => new(contact.Id, contact.Name, contact.Identificator, (PlatformGetShortDto)contact.Platform);
+	public static explicit operator ContactGetShortDto(Contact contact) => new(contact.Id, contact.Name ?? "", contact.Identificator, (PlatformGetShortDto)contact.Platform);
 }

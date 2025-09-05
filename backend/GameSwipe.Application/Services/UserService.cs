@@ -125,7 +125,6 @@ public class UserService : IUserService
 
 	public async Task<UserWriteDto> GetTemplateAsync()
 	{
-		//to finish
 		User? entity = await _db.Users
 			.Include(x => x.Languages)
 			.Include(x => x.Genres)
@@ -142,7 +141,11 @@ public class UserService : IUserService
 
 		List<ScheduleWriteDto> schedules = entity.AvailableSchedules.Select(x => new ScheduleWriteDto(x.Day, x.StartTime, x.EndTime)).ToList();
 
-		UserWriteDto dto = new UserWriteDto(_id.Id, entity.Username, entity.Email, entity.Name, null, entity.BirthDate, entity.Avatar, entity.Description, entity.Location, entity.Languages.Select(x => x.Id).ToList(), entity.Genres.Select(x => x.Id).ToList(), entity.RolePreferred, .., .., entity.Preferences, ..);
+		List<GameRecordWriteDto> gameRecords = entity.GameRecords.Select(x => new GameRecordWriteDto(x.User.Id, x.Game.Id, x.Playtime, x.Progress)).ToList();
+
+		List<ContactWriteDto> contacts = entity.Contacts.Select(x => new ContactWriteDto(x.Identificator, x.Platform.Id, x.Name)).ToList();
+
+		UserWriteDto dto = new UserWriteDto(_id.Id, entity.Username, entity.Email, entity.Name, null, entity.BirthDate, entity.Avatar, entity.Description, entity.Location, entity.Languages.Select(x => x.Id).ToList(), entity.Genres.Select(x => x.Id).ToList(), entity.RolePreferred, schedules, gameRecords, entity.Preferences, contacts);
 		return dto;
 	}
 
@@ -246,7 +249,27 @@ public class UserService : IUserService
 
 	public Task<List<UserGetShortDto>> SearchUsersAsync(UserSearchDto dto, int page = 1, int pageSize = 20)
 	{
-		throw new NotImplementedException();
+		int skip = (page - 1) * pageSize;
+		IQueryable<User> query = _db.Users;
+		if(dto.MinimumAge is not null)
+			query = query.Where(x => x.BirthDate < DateTime.UtcNow.AddYears(-dto.MinimumAge.Value));
+		if(dto.MaximumAge is not null)
+			query = query.Where(x => x.BirthDate > DateTime.UtcNow.AddYears(-dto.MaximumAge.Value));
+		if(dto.Location is not null)
+			query = query.Where(x => x.Location.ToUpper().Contains(dto.Location.ToUpper()));
+		if(dto.LanguageIds is not null)
+			query = query.Where(x => x.Languages.Select(x => x.Id).Intersect(dto.LanguageIds).Any());
+		if(dto.GenreIds is not null)
+			query = query.Where(x => x.Genres.Select(x => x.Id).Intersect(dto.GenreIds).Any());
+		if(dto.PlatformIds is not null)
+			query = query.Where(x => x.Contacts.Select(x => x.Platform.Id).Intersect(dto.PlatformIds).Any());
+		if(dto.Role is not null)
+			query = query.Where(x => x.RolePreferred.ToUpper().Contains(dto.Role.ToUpper()));
+		if(dto.Preferences is not null)
+			query = query.Where(x => x.Preferences.ToUpper().Contains(dto.Preferences.ToUpper()));
+		if(dto.Status is not null)
+			query = query.Where(x => x.ReceivedMatches.Any(m => m.UserId == _id.Id && m.Status == dto.Status));
+		return query.Skip(skip).Take(pageSize).Select(x => (UserGetShortDto)x).ToListAsync();
 	}
 
 	public Task<bool> SendEmailVerificationAsync(string email)

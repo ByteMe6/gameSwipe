@@ -15,5 +15,5 @@ public interface IGenreService
 
 	public Task<bool> DeleteGenreAsync(long id);
 
-	public Task<List<GenreGetShortDto>> GetGenresAsync(long id);
+	public Task<List<GenreGetShortDto>> GetGenresShortAsync();
 }

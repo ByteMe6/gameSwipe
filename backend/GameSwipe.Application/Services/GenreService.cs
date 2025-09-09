@@ -44,7 +44,7 @@ public class GenreService : IGenreService
 		return await _db.Genres.Include(x => x.Games).FirstOrDefaultAsync(x => x.Id == id) ?? throw new Exception("Genre not found");
 	}
 
-	public async Task<List<GenreGetShortDto>> GetGenresAsync(long id)
+	public async Task<List<GenreGetShortDto>> GetGenresShortAsync()
 	{
 		return await _db.Genres.Select(x => new GenreGetShortDto(x.Id, x.Name)).ToListAsync();
 	}

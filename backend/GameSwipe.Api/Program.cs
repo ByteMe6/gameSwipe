@@ -1,4 +1,6 @@
 
+using GameSwipe.Application.Interfaces.Services.Others;
+using GameSwipe.Application.Services;
 using GameSwipe.DataAccess.DbContexts;
 
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +12,7 @@ var builder = WebApplication.CreateBuilder();
 // Add services to the container.
 
 builder.Services.AddDbContext<GameSwipeDbContext>(options => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=GameSwipeDb;Integrated Security=true;"));
-
+builder.Services.AddScoped<ILanguageService, LanguageService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

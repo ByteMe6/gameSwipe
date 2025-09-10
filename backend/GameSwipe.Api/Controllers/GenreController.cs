@@ -67,4 +67,30 @@ public class GenreController : Controller
 			return BadRequest(ex.Message);
 		}
 	}
+
+	[HttpDelete("{id}")]
+	public async Task<IActionResult> DeleteGenreAsync(long id)
+	{
+		try
+		{
+			return Ok(await _serv.DeleteGenreAsync(id));
+		}
+		catch(Exception ex)
+		{
+			return BadRequest(ex.Message);
+		}
+	}
+
+	[HttpGet]
+	public async Task<IActionResult> GetGenresShortAsync()
+	{
+		try
+		{
+			return Ok(await _serv.GetGenresShortAsync());
+		}
+		catch(Exception ex)
+		{
+			return BadRequest(ex.Message);
+		}
+	}
 }

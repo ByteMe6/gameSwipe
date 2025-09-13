@@ -163,11 +163,11 @@ public class UserService : IUserService
 			.Include(x => x.Languages)
 			.Include(x => x.Genres)
 			.Include(x => x.OwnMatches).ThenInclude(x => x.TargetUser)
-			.Include(x => x.OwnMatches).ThenInclude(x => x.User)
+			.Include(x => x.OwnMatches)
 			.Include(x => x.AvailableSchedules)
 			.Include(x => x.Contacts).ThenInclude(x => x.Platform)
 			.Include(x => x.GameRecords).ThenInclude(x => x.Game)
-			.Include(x => x.GameRecords).ThenInclude(x => x.User)
+			.Include(x => x.GameRecords)
 			.FirstOrDefaultAsync(x => x.Id == id);
 
 		if(entity is null)

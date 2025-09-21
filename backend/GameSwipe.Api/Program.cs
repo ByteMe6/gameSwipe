@@ -1,4 +1,5 @@
 
+using GameSwipe.Api.Extensions;
 using GameSwipe.Api.Services;
 using GameSwipe.Application.Interfaces.Services;
 using GameSwipe.Application.Interfaces.Services.Games;
@@ -24,6 +25,8 @@ builder.Services.AddScoped<IMatchService, MatchService>();
 builder.Services.AddScoped<IIdentityService, IdentityService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddJwtAuthentication(builder.Configuration.GetSection("Jwt"));
+builder.Services.AddSwaggerAuthentication();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers();

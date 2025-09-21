@@ -131,6 +131,19 @@ public class MatchService : IMatchService
 
 		int skip = (page - 1) * pageSize;
 
+		var result = from ew in _db.Matches
+					 join sdf in _db.Users
+					 on ew.UserId equals sdf.Id
+					 join fio in _db.Users
+					 on ew.TargetUserId equals fio.Id
+					 select new
+					 {
+						 ew.UserId,
+						 ew.Id,
+						 sdf.Name
+					 };
+		var list =  await result.ToListAsync();
+
 		return await _db.Matches.Include(x => x.TargetUser).Include(x => x.User)
 			.Join(
 				_db.Matches,

@@ -32,7 +32,7 @@ public class TokenService : ITokenService
 			new Claim(ClaimTypes.Role, role.ToString()),
 			new Claim(JwtRegisteredClaimNames.Iat, new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds().ToString())
 		];
-		SymmetricSecurityKey key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_config["Key"] ?? throw new Exception("JWT Key not found")));
+		SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Key"] ?? throw new Exception("JWT Key not found")));
 		SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 		DateTime expDate = DateTime.Now.AddDays(int.Parse(_config["Lifetime"] ?? throw new Exception("Lifetime not found")));
 

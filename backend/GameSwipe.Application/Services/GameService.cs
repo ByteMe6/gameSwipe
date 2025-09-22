@@ -29,7 +29,7 @@ public class GameService : IGameService
 			Updated = DateTime.UtcNow,
 		};
 
-		await _db.Games.AddAsync(entity);
+		_db.Games.Add(entity);
 		return await _db.SaveChangesAsync() > 0;
 	}
 
